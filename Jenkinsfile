@@ -31,7 +31,7 @@ pipeline {
 
         stage('Deploy with Ansible') {
             steps {
-                sh "ansible-playbook -i inventory.ini deploy.yml"
+                sh "ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i hosts.ini playbook.yml"
             }
         }
     }
