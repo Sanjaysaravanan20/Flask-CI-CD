@@ -9,7 +9,7 @@ pipeline {
     stages {
         stage('Clone Repository') {
             steps {
-                git 'https://github.com/<YOUR_GITHUB_USERNAME>/flask-app.git'
+                git 'https://github.com/Sanjaysaravanan20/Flask-CI-CD.git'
             }
         }
 
@@ -31,7 +31,7 @@ pipeline {
 
         stage('Deploy with Ansible') {
             steps {
-                sh "ansible-playbook -i /etc/ansible/hosts ~/ansible/deploy.yml"
+                sh "ansible-playbook -i inventory.ini deploy.yml"
             }
         }
     }
