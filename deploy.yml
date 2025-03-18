@@ -1,1 +1,17 @@
-ECHO is on.
+- name: Deploy Flask App
+  hosts: app
+  become: yes
+  tasks:
+    - name: Pull latest Docker image
+      command: docker pull sanjay2025/flask-app:latest
+
+    - name: Stop existing container
+      command: docker stop flask-app
+      ignore_errors: yes
+
+    - name: Remove old container
+      command: docker rm flask-app
+      ignore_errors: yes
+
+    - name: Run new container
+      command: docker run -d -p 5000:5000 --name flask-app sanjay2025/flask-app:latest
